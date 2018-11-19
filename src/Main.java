@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -115,67 +114,64 @@ public class Main extends Application {
         commentHolder.add(new HBox());
 
         listID.add(new TextField());
-        listID.get(i+1).setText("" + unitsReceived.get(i).getID());
+        listID.get(i).setText("" + unitsReceived.get(i).getID());
         listCarrier.add(new ComboBox(Carrier));
-        listCarrier.get(i+1).setValue(unitsReceived.get(i).getCarrier());
+        listCarrier.get(i).setValue(unitsReceived.get(i).getCarrier());
         listTracking.add(new TextField());
-        listTracking.get(i+1).setText(unitsReceived.get(i).getTracking());
+        listTracking.get(i).setText(unitsReceived.get(i).getTracking());
         listName.add(new TextField());
-        listName.get(i+1).setText(unitsReceived.get(i).getName());
+        listName.get(i).setText(unitsReceived.get(i).getName());
         listNumber.add(new TextField());
-        listNumber.get(i+1).setText("" + unitsReceived.get(i).getNumber());
+        listNumber.get(i).setText("" + unitsReceived.get(i).getNumber());
         listMinus.add(new Button("-"));
         listPlus.add(new Button("+"));
-        listMinus.get(i).setOnAction(event -> {
-            unitsReceived.get(i).setNumber(unitsReceived.get(i).getNumber()-1);
-            listNumber.get(i).setText(""+unitsReceived.get(i).getNumber());
-        });
-        listPlus.get(i).setOnAction(event -> {
-            unitsReceived.get(i).setNumber(unitsReceived.get(i).getNumber()+1);
-            listNumber.get(i).setText(""+unitsReceived.get(i).getNumber());
-        });
+
         listCondition.add(new ComboBox(conditionOptions));
-        listCondition.get(i+1).setValue(unitsReceived.get(i).getCondition());
+        listCondition.get(i).setValue(unitsReceived.get(i).getCondition());
         listComment.add(new TextField());
-        listComment.get(i+1).setText(unitsReceived.get(i).getComment());
+        listComment.get(i).setText(unitsReceived.get(i).getComment());
 
-        IDHolder.get(i+1).getChildren().add(listID.get(i+1));
-        carrierHolder.get(i+1).getChildren().add(listCarrier.get(i+1));
-        trackingHolder.get(i+1).getChildren().add(listTracking.get(i+1));
-        nameHolder.get(i+1).getChildren().add(listName.get(i+1));
-        numberHolder.get(i+1).getChildren().addAll(listNumber.get(i+1), listMinus.get(i+1),listPlus.get(i+1));
-        conditionHolder.get(i+1).getChildren().add(listCondition.get(i+1));
-        commentHolder.get(i+1).getChildren().add(listComment.get(i+1));
+        IDHolder.get(i+1).getChildren().add(listID.get(i));
+        carrierHolder.get(i+1).getChildren().add(listCarrier.get(i));
+        trackingHolder.get(i+1).getChildren().add(listTracking.get(i));
+        nameHolder.get(i+1).getChildren().add(listName.get(i));
+        numberHolder.get(i+1).getChildren().addAll(listNumber.get(i), listMinus.get(i),listPlus.get(i));
+        conditionHolder.get(i+1).getChildren().add(listCondition.get(i));
+        commentHolder.get(i+1).getChildren().add(listComment.get(i));
 
-        listID.get(i+1).setEditable(Boolean.FALSE);
+        listID.get(i).setEditable(Boolean.FALSE);
         //listID.get(0).setDisable(Boolean.TRUE);
         IDHolder.get(i+1).setMinWidth(50);
         IDHolder.get(i+1).setMaxWidth(50);
         IDHolder.get(i+1).setAlignment(Pos.CENTER);
 
-        listCarrier.get(i+1).setMaxWidth(110);
-        listCarrier.get(i+1).setMinWidth(110);
+        listCarrier.get(i).setMaxWidth(110);
+        listCarrier.get(i).setMinWidth(110);
         carrierHolder.get(i+1).setMinWidth(110);
         carrierHolder.get(i+1).setMaxWidth(110);
 
+        listTracking.get(i).setMinWidth(240);
+        listTracking.get(i).setMaxWidth(240);
         trackingHolder.get(i+1).setMinWidth(240);
         trackingHolder.get(i+1).setMaxWidth(240);
 
-        listName.get(i+1).setMaxWidth(300);
-        listName.get(i+1).setMinWidth(300);
+        listName.get(i).setMaxWidth(300);
+        listName.get(i).setMinWidth(300);
         nameHolder.get(i+1).setMaxWidth(300);
         nameHolder.get(i+1).setMinWidth(300);
 
-        numberHolder.get(i+1).setMinWidth(110);
-        numberHolder.get(i+1).setMaxWidth(110);
+        listNumber.get(i).setMinWidth(50);
+        listNumber.get(i).setMaxWidth(50);
+        numberHolder.get(i+1).setMinWidth(105);
+        numberHolder.get(i+1).setMaxWidth(105);
 
-        listCondition.get(i+1).setMinWidth(90);
-        listCondition.get(i+1).setMaxWidth(90);
+        listCondition.get(i).setMinWidth(90);
+        listCondition.get(i).setMaxWidth(90);
         conditionHolder.get(i+1).setMinWidth(90);
         conditionHolder.get(i+1).setMaxWidth(90);
 
-        listComment.get(i+1).setMinWidth(445);
-        listComment.get(i+1).setMaxWidth(445);
+        listComment.get(i).setMinWidth(445);
+        listComment.get(i).setMaxWidth(445);
         commentHolder.get(i+1).setMinWidth(445);
         commentHolder.get(i+1).setMaxWidth(445);
 
@@ -189,6 +185,15 @@ public class Main extends Application {
         listPlaceHolder.get(i+1).getChildren().add(commentHolder.get(i+1));
 
         listBox.getChildren().addAll(listPlaceHolder.get(i+1));
+
+        listMinus.get(i).setOnAction(event -> {
+            unitsReceived.get(i).setNumber(unitsReceived.get(i).getNumber()-1);
+            listNumber.get(i).setText(""+unitsReceived.get(i).getNumber());
+        });
+        listPlus.get(i).setOnAction(event -> {
+            unitsReceived.get(i).setNumber(unitsReceived.get(i).getNumber()+1);
+            listNumber.get(i).setText(""+unitsReceived.get(i).getNumber());
+        });
     }
 
     public Scene home(){
@@ -228,6 +233,7 @@ public class Main extends Application {
         conditionHolder.add(new HBox());
         commentHolder.add(new HBox());
 
+        /*
         listID.add(new TextField());
         listID.get(0).setText("88");
         listCarrier.add(new ComboBox(Carrier));
@@ -242,6 +248,7 @@ public class Main extends Application {
         listCondition.add(new ComboBox(conditionOptions));
         listComment.add(new TextField());
         listComment.get(0).setText("This thing is a crap");
+        */
 
         IDHolder.get(0).getChildren().add(new Label("ID"));
         carrierHolder.get(0).getChildren().add(new Label("快递"));
